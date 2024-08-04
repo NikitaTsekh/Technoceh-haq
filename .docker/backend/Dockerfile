@@ -9,7 +9,7 @@ WORKDIR /usr/src/app
 COPY backend /usr/src/app
 
 RUN pip3 install --upgrade pip
-RUN pip3 install mysql-connector-python python-dotenv Django django-rest-framework requests drf-yasg mysqlclient django-cors-headers
+RUN pip3 install mysql-connector-python python-dotenv Django django-rest-framework requests drf-yasg mysqlclient
 
 RUN mkdir -p "/usr/src/app/static"
 RUN mkdir -p "/usr/src/app/media"
