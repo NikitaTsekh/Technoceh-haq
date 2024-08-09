@@ -16,7 +16,7 @@ services:
     build:
       context: .  # Use the directory containing `docker-compose.yml` as the context
       dockerfile: Dockerfile  # Path to the Dockerfile relative to the context
-    command: python manage.py runserver 0.0.0.0:8001
+    command: /app/src/manage.py runserver 0.0.0.0:8001
     volumes:
       - .:/app
     ports:
