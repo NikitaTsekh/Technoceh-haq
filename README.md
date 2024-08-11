@@ -1,2 +1,2 @@
 # Technoceh-haq
-Augustu haqathon backen
+August haqathon backen
