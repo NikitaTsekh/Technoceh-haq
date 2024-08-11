@@ -4,6 +4,8 @@ FROM python:3.10
 # Set the working directory in the container
 WORKDIR /app
 
+COPY .env /app/.env
+
 # Upgrade pip to the latest version
 RUN pip install --upgrade pip
 
@@ -16,6 +18,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code into the container
 COPY src .
 
+# Copy the entrypoint script into the container
+COPY entrypoint.sh /app/entrypoint.sh
+
 # Set the environment variable for Django settings module
 ENV DJANGO_SETTINGS_MODULE=djangoProject.settings
 
@@ -27,4 +32,4 @@ EXPOSE 8001
 ENV PYTHONUNBUFFERED=1
 
 # Run the Django development server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8001"]
+ENTRYPOINT ["/app/entrypoint.sh"]
