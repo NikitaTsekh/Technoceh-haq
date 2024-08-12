@@ -15,11 +15,11 @@ services:
 
   web:
     build:
-      context: .  # Use the directory containing `docker-compose.yml` as the context
-      dockerfile: app/Dockerfile  # Path to the Dockerfile relative to the context
+      context: ../  # Use the directory containing `docker-compose.yml` as the context
+      dockerfile: .docker/app/Dockerfile  # Path to the Dockerfile relative to the context
     command: /app/src/manage.py runserver 0.0.0.0:8001
     volumes:
-      - .:/app
+      - ../src:/app/src
     ports:
       - "8001:8001"
     depends_on:
@@ -30,7 +30,7 @@ services:
   nginx:
     build:
       context: ..
-      dockerfile: nginx/Dockerfile
+      dockerfile: .docker/nginx/Dockerfile
     ports:
       - "80:80"
     depends_on:

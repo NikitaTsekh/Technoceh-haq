@@ -17,7 +17,7 @@ COPY .env /app/.env
 RUN pip install --upgrade pip
 
 # Copy the requirements file into the container
-COPY ../../requirements.txt .
+COPY requirements.txt .
 
 # Install any dependencies
 RUN pip install --no-cache-dir -r requirements.txt
@@ -37,7 +37,7 @@ EXPOSE 8001
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
 
-COPY app/entrypoint.sh /app/entrypoint.sh
+COPY .docker/app/entrypoint.sh /app/entrypoint.sh
 
-# Run the Django development server
+
 ENTRYPOINT ["/app/entrypoint.sh"]

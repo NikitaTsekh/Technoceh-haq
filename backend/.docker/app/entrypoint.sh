@@ -1,10 +1,18 @@
 #!/bin/sh
 
 
+# Debugging: Print the current working directory and list the files
+echo "Current working directory: $(pwd)"
+echo "Contents of /app directory:"
+ls -la /app
+
+
+
+
 while true; do
     # Вызов Python скрипта для проверки подключения к БД
       echo "Пытаемся подрубиться к БДшке"
-    python /app/src/check_db_connection.py
+    python /src/check_db_connection.py
     result=$?
     echo "Результат выполнения Python скрипта: $result"
     # Если Python скрипт завершился с кодом 0 (успех), прервать цикл
