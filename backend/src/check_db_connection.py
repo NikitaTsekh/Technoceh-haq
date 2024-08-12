@@ -23,7 +23,7 @@ config = {'user': os.getenv('MYSQL_USER'),
      'port': os.getenv('MYSQL_PORT'),
           }
 try:
-    print(config)
+
     # Попытка подключения к базе данных
     cnx = mysql.connector.connect(**config)
     cnx.close()
