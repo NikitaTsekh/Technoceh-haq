@@ -16,7 +16,7 @@ services:
   web:
     build:
       context: .  # Use the directory containing `docker-compose.yml` as the context
-      dockerfile: Dockerfile  # Path to the Dockerfile relative to the context
+      dockerfile: app/Dockerfile  # Path to the Dockerfile relative to the context
     command: /app/src/manage.py runserver 0.0.0.0:8001
     volumes:
       - .:/app
@@ -27,5 +27,19 @@ services:
     environment:
      - DJANGO_SETTINGS_MODULE=djangoProject.settings
 
+  nginx:
+    build:
+      context: ..
+      dockerfile: nginx/Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+    volumes:
+      - static_volume:/usr/share/nginx/html/static
+      - media_volume:/usr/share/nginx/html/media
+
 volumes:
   db_data:
+  static_volume:
+  media_volume:
