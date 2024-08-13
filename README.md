@@ -1,2 +1,2 @@
 # Technoceh-haq
-August haqathon backen
+August haqathon backend
