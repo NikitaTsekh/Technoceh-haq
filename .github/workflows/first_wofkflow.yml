@@ -24,7 +24,7 @@ jobs:
       run: ssh root@176.114.69.232 "rm -rf /backend-project/*"
 
     - name: Copy files to server
-      run: scp -r ./* root@176.114.69.232:/backend-project/
+      run: scp -r ./* root@176.114.69.232:/
 
     - name: Deploy on server
       run: ssh root@176.114.69.232 "cd /backend-project/.docker && docker-compose down && docker-compose up --build -d"
