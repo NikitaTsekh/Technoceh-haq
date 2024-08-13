@@ -18,14 +18,14 @@ jobs:
         mkdir -p ~/.ssh
         echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan 176.114.69.232 >> ~/.ssh/known_hosts
+        ssh-keyscan 87.228.19.52 >> ~/.ssh/known_hosts
 
     - name: Remove existing files on the server
-      run: ssh root@176.114.69.232 "rm -rf /backend-project/*"
+      run: ssh root@87.228.19.52 "rm -rf /backend-project/*"
 
     - name: Copy files to server using rsync
       run: |
-        rsync -avz --delete --exclude '.git/' . root@176.114.69.232:/
+        rsync -avz --delete --exclude '.git/' . root@87.228.19.52:/
 
     - name: Deploy on server
-      run: ssh root@176.114.69.232 "cd /backend-project/.docker && docker-compose down && docker-compose up --build -d"
+      run: ssh root@87.228.19.52 "cd /backend-project/.docker && docker-compose down && docker-compose up --build -d"
