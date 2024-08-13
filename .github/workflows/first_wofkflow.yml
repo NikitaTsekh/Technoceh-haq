@@ -1,0 +1,26 @@
+name: Backend
+on:
+  push:
+    branches:
+      - main  # Trigger on push to the main branch
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Remove existing files on the server
+      run: ssh root@176.114.69.232 "rm -rf /backend-project/*"
+
+    - name: Copy files to server
+      run: scp -r ./* root@176.114.69.232:/backend-project/
+
+    - name: Deploy on server
+      run: ssh root@176.114.69.232 "cd /backend-project/.docker && docker-compose down && docker-compose up --build -d"
