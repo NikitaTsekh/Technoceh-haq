@@ -28,4 +28,4 @@ jobs:
         rsync -avz . root@87.228.19.52:/root/backend-project/
 
     - name: Deploy on server
-      run: ssh root@87.228.19.52 "cd /root/backend-project/.docker && docker-compose down && docker-compose up --build -d"
+      run: ssh root@87.228.19.52 "cd /root/backend-project/backend/.docker && docker-compose down && docker-compose up --build -d"
