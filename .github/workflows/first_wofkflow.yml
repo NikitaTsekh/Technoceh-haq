@@ -25,7 +25,7 @@ jobs:
 
     - name: Copy files to server using rsync
       run: |
-        rsync -avz --delete --exclude '.git/' . root@176.114.69.232:/path/to/destination/
+        rsync -avz --delete --exclude '.git/' . root@176.114.69.232:/
 
     - name: Deploy on server
       run: ssh root@176.114.69.232 "cd /backend-project/.docker && docker-compose down && docker-compose up --build -d"
