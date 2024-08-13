@@ -16,7 +16,9 @@ jobs:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       run: |
         eval "$(ssh-agent -s)"
-        echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - 
+        echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+        mkdir -p ~/.ssh
+        echo "176.114.69.232 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDUqbsjdNi3jFhVV0+R8VaY7tsZ6Qq8Zy/LbRa4k4lAl2ejseDLihUdSLPJxH3y9/vOA+WgpkhQjh+nRLJ4jBhRrGNcryCmij29vMNOf+zJ0ssN0U3T4zBzR+IW6I39s7l704u/zUgs8iYSnGz5hwKP4uEbfgufhFbTQd0CRXjLcGxO9enr63XQ/r3+PHFDeGqMQuXLmoZ+4fFxLxq1WGGAdtgtPA9cSrKJ8EGecdWwhTsWrNqQzOhQtulSktxV3jPP9mRLK6VL7oIUib6luz0Ri+7Br67hWgysQgfjZ/cgpQLO2hsVVwdoU21R8fJENZ0RrAWevNv2lIdwuMg5ESMcNFOfKwSKXCh7lWlHz5qZxf4Z0GE9PZPK63CZyYG2Hf9RPXYKmC0v/+LqkPx0vmbirmc+wMCR4Bi1ytDMn2e21OZ74mjG9tGij7wsCdurmmDgAgSvPtpiJxSJ6ybJeiiiDQUrthT/Jxcxa0mC0deYmPr2GUJJnumUemN7bdzWXEM=" >> ~/.ssh/known_hosts
 
     - name: Remove existing files on the server
       run: ssh root@176.114.69.232 "rm -rf /backend-project/*"
