@@ -31,7 +31,7 @@ def send_code(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@swagger_auto_schema(method='get', operation_id='проверка кода', manual_parameters=[
+@swagger_auto_schema(method='get', operation_id='чекинг кода', manual_parameters=[
     openapi.Parameter('phone', openapi.IN_QUERY, description="Phone number of the user", type=openapi.TYPE_STRING,
                       required=True),
     openapi.Parameter('code', openapi.IN_QUERY, description="SMS code sent to the user", type=openapi.TYPE_STRING,
