@@ -11,19 +11,19 @@ WORKDIR /app
 # Print the current working directory
 
 
-COPY .env /app/.env
+COPY backend/.env /app/.env
 
 # Upgrade pip to the latest version
 RUN pip install --upgrade pip
 
 # Copy the requirements file into the container
-COPY requirements.txt .
+COPY backend/requirements.txt .
 
 # Install any dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application code into the container
-COPY src /app/src
+COPY backend/src /backend/src
 
 
 
@@ -37,7 +37,7 @@ EXPOSE 8001
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
 
-COPY .docker/app/entrypoint.sh /app/entrypoint.sh
+COPY .docker/backend/entrypoint.sh /backend/entrypoint.sh
 
 
-ENTRYPOINT ["/app/entrypoint.sh"]
+ENTRYPOINT ["/backend/entrypoint.sh"]

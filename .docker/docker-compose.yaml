@@ -13,19 +13,28 @@ services:
     volumes:
       - db_data:/var/lib/mysql
 
-  web:
+  backend:
     build:
-      context: ../  # Use the directory containing `docker-compose.yml` as the context
-      dockerfile: .docker/app/Dockerfile  # Path to the Dockerfile relative to the context
+      context: ..  # Use the directory containing `docker-compose.yml` as the context
+      dockerfile: .docker/backend/Dockerfile  # Path to the Dockerfile relative to the context
     command: /app/src/manage.py runserver 0.0.0.0:8001
     volumes:
-      - ../src:/app/src
+      - ../backend/src:/app/src
     ports:
       - "8001:8001"
     depends_on:
       - db
     environment:
      - DJANGO_SETTINGS_MODULE=djangoProject.settings
+
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: .docker/frontend/Dockerfile
+    volumes:
+      - static_volume:/usr/share/nginx/html/static
+      - media_volume:/usr/share/nginx/html/media
 
   nginx:
     build:
@@ -34,7 +43,8 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - web
+      - backend
+      - frontend
     volumes:
       - static_volume:/usr/share/nginx/html/static
       - media_volume:/usr/share/nginx/html/media

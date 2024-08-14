@@ -25,7 +25,7 @@ jobs:
 
     - name: Copy files to server using rsync
       run: |
-        rsync -avz . root@87.228.19.52:/root/backend-project/
+        rsync -avz . root@87.228.19.52:/root/hackathon-technoceh-project/
 
     - name: Deploy on server
-      run: ssh root@87.228.19.52 "cd /root/backend-project/backend/.docker && docker-compose down && docker-compose up --build -d"
+      run: ssh root@87.228.19.52 "cd /root/hackathon-technoceh-project/.docker && docker-compose down && docker-compose up --build -d"

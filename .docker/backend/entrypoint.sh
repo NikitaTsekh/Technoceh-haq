@@ -6,7 +6,7 @@
 # Debugging: Print the current working directory and list the files
 echo "Current working directory: $(pwd)"
 echo "Contents of /app directory:"
-ls -la /app
+ls -la /bakcend
 
 
 

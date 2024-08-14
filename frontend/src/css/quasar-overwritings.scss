@@ -1,0 +1,19 @@
+$max-app-width: 900px;
+
+#q-app {
+  max-width: $max-app-width;
+  height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+.q-toolbar {
+  max-width: $max-app-width !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.q-card {
+  border-radius: 10px !important;
+}
